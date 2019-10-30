@@ -1,0 +1,22 @@
+{
+  "name": "weather-zip-codes",
+  "version": "1.0.0",
+  "description": "Weather zip code store microservice for daily weather app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-davidelden:davidelden/weather-zip-codes.git"
+  },
+  "keywords": [
+    "weather",
+    "api",
+    "aws",
+    "sns",
+    "sms"
+  ],
+  "author": "David Elden",
+  "license": "MIT"
+}
