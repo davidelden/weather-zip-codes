@@ -2,29 +2,36 @@ exports.up = function(knex) {
   return knex.schema
     .createTable('zip_codes', tbl => {
       tbl.increments('id').primary();
-      tbl.string('zip_code').index().unique();
+      tbl.string('zip_code').unique();
       tbl.timestamps(true, true);
     })
     .createTable('us_eastern', tbl => {
       tbl.inherits('zip_codes');
+      tbl.unique('zip_code');
     })
     .createTable('us_central', tbl => {
       tbl.inherits('zip_codes');
+      tbl.unique('zip_code');
     })
     .createTable('us_mountain', tbl => {
       tbl.inherits('zip_codes');
+      tbl.unique('zip_code');
     })
     .createTable('us_arizona', tbl => {
       tbl.inherits('zip_codes');
+      tbl.unique('zip_code');
     })
     .createTable('us_pacific', tbl => {
       tbl.inherits('zip_codes');
+      tbl.unique('zip_code');
     })
     .createTable('us_alaska', tbl => {
       tbl.inherits('zip_codes');
+      tbl.unique('zip_code');
     })
     .createTable('us_hawaii', tbl => {
       tbl.inherits('zip_codes');
+      tbl.unique('zip_code');
     })
 };
 
