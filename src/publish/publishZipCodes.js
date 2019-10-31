@@ -1,26 +1,20 @@
-const fetchZipCodes = require('../fetch/helpers/fetchZipCodes.js');
-
-const msgTimeZones = {
-  FetchUSEasternWeather: 'us_eastern',
-  FetchUSCentralWeather: 'us_central',
-  FetchUSMountainWeather: 'us_mountain',
-  FetchUSArizonaWeather: 'us_arizona',
-  FetchUSPacificWeather: 'us_pacific',
-  FetchUSAlaskaWeather: 'us_alaska',
-  FetchUSHawaiiWeather: 'us_hawaii'
-}
+const msgTimeZones = require('./helpers/msgTimeZones.js'),
+      fetchZipCodes = require('../fetch/helpers/fetchZipCodes.js'),
+      eventMessages = require('../streams/events/eventMessages.js'),
+      writeStream = require('../streams/actions/writeStream'),
+      streamName = 'WeatherZipCodes';
 
 const publishZipCodes = async msg => {
   if(!msgTimeZones[msg]) return;
-  // Write to stream Begin event
+
+  writeStream(streamName, eventMessages['start']);
 
   const dbTbl = msgTimeZones[msg],
-        zipCodes = await fetchZipCodes(dbTbl); // Get zip codes to publish
+        zipCodes = await fetchZipCodes(dbTbl);
 
-  zipCodes.forEach(code => ) // write zip code to stream
+  zipCodes.forEach(code => writeStream(streamName, eventMessages['data'])(code));
 
-  // Catch any errors
-  // Write to stream End event
+  writeStream(streamName, eventMessages['end']);
 }
 
 module.exports = publishZipCodes;
