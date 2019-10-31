@@ -12,7 +12,7 @@ const publishZipCodes = async msg => {
   const dbTbl = msgTimeZones[msg],
         zipCodes = await fetchZipCodes(dbTbl);
 
-  zipCodes.forEach(code => writeStream(streamName, eventMessages['data'])(code));
+  zipCodes.forEach(code => writeStream(streamName, eventMessages['data'](code)));
 
   writeStream(streamName, eventMessages['end']);
 }
